@@ -1,2 +1,1 @@
-# project-02
- 
+# PHP Quiz App - Project #2
