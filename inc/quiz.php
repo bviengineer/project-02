@@ -19,6 +19,13 @@
 include('inc/questions.php');
 
 // Keep track of which questions have been asked
+$questionsAsked = [];
+foreach ($questions as $question) {
+    //var_dump($question);
+    array_push($questionsAsked, $question);
+}
+//var_dump($questionsAsked);
+//echo $questionsAsked[9]['leftAdder'] .  "\n"; 
 
 // Show which question they are on
 // Show random question
