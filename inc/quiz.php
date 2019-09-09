@@ -16,6 +16,7 @@
  */
 
 // Include questions
+include('inc/questions.php');
 
 // Keep track of which questions have been asked
 
