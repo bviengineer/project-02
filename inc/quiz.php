@@ -33,6 +33,14 @@ foreach ($questions as $key => $question) {
 }
 
 // Show random question
+function getRandomQuestion($array) {
+    $randomNum = rand(0, (count($array)-1));
+    return $array[$randomNum];        
+}
+$theRandomQuestion = getRandomQuestion($questions);
+//var_dump($theRandomQuestion);
+
+
 // Shuffle answer buttons
 
 
