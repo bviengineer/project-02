@@ -28,6 +28,10 @@ foreach ($questions as $question) {
 //echo $questionsAsked[9]['leftAdder'] .  "\n"; 
 
 // Show which question they are on
+foreach ($questions as $key => $question) {
+    echo('This item ' . $key . ' of ' .count($questions) . ': ' . $question['leftAdder'] . "\n");
+}
+
 // Show random question
 // Shuffle answer buttons
 
