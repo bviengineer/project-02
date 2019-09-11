@@ -18,7 +18,7 @@
         <div id="quiz-box">
             <p class="breadcrumbs">Question <?php 
                     if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= count($questions)) {
-                            $_SESSION[questionCounter] = 1;
+                            $_SESSION[questionCounter] = 0;
                         } else {
                             $_SESSION[questionCounter]++;
                         }
@@ -27,7 +27,7 @@
                 of 
                     <?php echo count($questions); ?>
             </p>
-            <p class="quiz">What is <?php getLeftAdder(); ?> + <?php getRightAdder(); ?>?</p>
+            <p class="quiz">What is <?php echo $questionToAsk['leftAdder']; ?> + <?php echo $questionToAsk['rightAdder']; ?>?</p>
             <form action="index.html" method="post">
                 <input type="hidden" name="id" value="0" />
                 <input type="submit" class="btn" name="answer" value="<?php getCorrectAnswer(); ?>" />

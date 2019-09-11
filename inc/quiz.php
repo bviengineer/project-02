@@ -14,55 +14,58 @@
  *  3. auto generate questions
  *
  */
-
- session_start();
-
 // Include questions
 include('inc/questions.php');
 
-//Getting operands from inner array
-function getLeftAdder() {
-   global $questions;
-    $leftAdder = 0;
-    for ($i = 0; $i <= count($questions); $i++) {
-        $leftAdder = $questions[0]['leftAdder'];
-    }
-    echo $leftAdder;
-}
-function getRightAdder() {
-    global $questions;
-    $rightAdder = 0;
-    for ($i = 0; $i <= count($questions); $i++) {
-        $rightAdder = $questions[0]['rightAdder'];
-    }
-    echo $rightAdder;
-}
+// Individual Array of question
+$questionToAsk = $questions[0];
+// echo $questionToAsk['leftAdder'];
+// echo $questionToAsk['rightAdder'];
+//if I"m adding the first inner array element to empty array, why do I have to add the o
 
-// Getting question answers from inner array
-function getCorrectAnswer() {
-    global $questions;
-    $correctAnswer = 0;
-    for ($i = 0; $i <= count($questions); $i++) {
-        $correctAnswer = $questions[0]['correctAnswer'];
-    }
-    echo $correctAnswer;
-}
-function getFirstIncorrectAnswer() {
-    global $questions;
-    $firstIncorrectAnswer = 0;
-    for ($i = 0; $i <= count($questions); $i++) {
-        $firstIncorrectAnswer = $questions[0]['firstIncorrectAnswer'];
-    }
-    echo $firstIncorrectAnswer;
-}
-function getSecondIncorrectAnswer() {
-    global $questions;
-    $secondIncorrectAnswer = 0;
-    for ($i = 0; $i <= count($questions); $i++) {
-        $secondIncorrectAnswer = $questions[0]['secondIncorrectAnswer'];
-    }
-    echo $secondIncorrectAnswer;
-}
+//Getting operands from inner array
+// function getLeftAdder() {
+//    global $questions;
+//     $leftAdder = 0;
+//     for ($i = 0; $i <= count($questions); $i++) {
+//         $leftAdder = $questions[0]['leftAdder'];
+//     }
+//     echo $leftAdder;
+// }
+// function getRightAdder() {
+//     global $questions;
+//     $rightAdder = 0;
+//     for ($i = 0; $i <= count($questions); $i++) {
+//         $rightAdder = $questions[0]['rightAdder'];
+//     }
+//     echo $rightAdder;
+// }
+
+// // Getting question answers from inner array
+// function getCorrectAnswer() {
+//     global $questions;
+//     $correctAnswer = 0;
+//     for ($i = 0; $i <= count($questions); $i++) {
+//         $correctAnswer = $questions[0]['correctAnswer'];
+//     }
+//     echo $correctAnswer;
+// }
+// function getFirstIncorrectAnswer() {
+//     global $questions;
+//     $firstIncorrectAnswer = 0;
+//     for ($i = 0; $i <= count($questions); $i++) {
+//         $firstIncorrectAnswer = $questions[0]['firstIncorrectAnswer'];
+//     }
+//     echo $firstIncorrectAnswer;
+// }
+// function getSecondIncorrectAnswer() {
+//     global $questions;
+//     $secondIncorrectAnswer = 0;
+//     for ($i = 0; $i <= count($questions); $i++) {
+//         $secondIncorrectAnswer = $questions[0]['secondIncorrectAnswer'];
+//     }
+//     echo $secondIncorrectAnswer;
+// }
 
 // Keep track of which questions have been asked
 // Show which question they are on
