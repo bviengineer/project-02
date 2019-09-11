@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    // include('inc/questions.php');
+    include('inc/quiz.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +16,23 @@
 <body>
     <div class="container">
         <div id="quiz-box">
-            <p class="breadcrumbs">Question # of #</p>
-            <p class="quiz">What is 54 + 71?</p>
+            <p class="breadcrumbs">Question <?php 
+                    if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= count($questions)) {
+                            $_SESSION[questionCounter] = 1;
+                        } else {
+                            $_SESSION[questionCounter]++;
+                        }
+                        echo $_SESSION[questionCounter];
+                    ?> 
+                of 
+                    <?php echo count($questions); ?>
+            </p>
+            <p class="quiz">What is <?php getLeftAdder(); ?> + <?php getRightAdder(); ?>?</p>
             <form action="index.html" method="post">
                 <input type="hidden" name="id" value="0" />
-                <input type="submit" class="btn" name="answer" value="135" />
-                <input type="submit" class="btn" name="answer" value="125" />
-                <input type="submit" class="btn" name="answer" value="115" />
+                <input type="submit" class="btn" name="answer" value="<?php getCorrectAnswer(); ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php getFirstIncorrectAnswer(); ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php getSecondincorrectAnswer(); ?>" />
             </form>
         </div>
     </div>

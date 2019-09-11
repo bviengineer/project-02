@@ -15,32 +15,58 @@
  *
  */
 
+ session_start();
+
 // Include questions
 include('inc/questions.php');
 
+//Getting operands from inner array
+function getLeftAdder() {
+   global $questions;
+    $leftAdder = 0;
+    for ($i = 0; $i <= count($questions); $i++) {
+        $leftAdder = $questions[0]['leftAdder'];
+    }
+    echo $leftAdder;
+}
+function getRightAdder() {
+    global $questions;
+    $rightAdder = 0;
+    for ($i = 0; $i <= count($questions); $i++) {
+        $rightAdder = $questions[0]['rightAdder'];
+    }
+    echo $rightAdder;
+}
+
+// Getting question answers from inner array
+function getCorrectAnswer() {
+    global $questions;
+    $correctAnswer = 0;
+    for ($i = 0; $i <= count($questions); $i++) {
+        $correctAnswer = $questions[0]['correctAnswer'];
+    }
+    echo $correctAnswer;
+}
+function getFirstIncorrectAnswer() {
+    global $questions;
+    $firstIncorrectAnswer = 0;
+    for ($i = 0; $i <= count($questions); $i++) {
+        $firstIncorrectAnswer = $questions[0]['firstIncorrectAnswer'];
+    }
+    echo $firstIncorrectAnswer;
+}
+function getSecondIncorrectAnswer() {
+    global $questions;
+    $secondIncorrectAnswer = 0;
+    for ($i = 0; $i <= count($questions); $i++) {
+        $secondIncorrectAnswer = $questions[0]['secondIncorrectAnswer'];
+    }
+    echo $secondIncorrectAnswer;
+}
+
 // Keep track of which questions have been asked
-$questionsAsked = [];
-foreach ($questions as $question) {
-    //var_dump($question);
-    array_push($questionsAsked, $question);
-}
-//var_dump($questionsAsked);
-//echo $questionsAsked[9]['leftAdder'] .  "\n"; 
-
 // Show which question they are on
-foreach ($questions as $key => $question) {
-    echo('This item ' . $key . ' of ' .count($questions) . ': ' . $question['leftAdder'] . "\n");
-}
-
 // Show random question
-function getRandomQuestion($array) {
-    $randomNum = rand(0, (count($array)-1));
-    return $array[$randomNum];        
-}
-$theRandomQuestion = getRandomQuestion($questions);
-//var_dump($theRandomQuestion);
-
-
 // Shuffle answer buttons
 
 
@@ -51,3 +77,5 @@ $theRandomQuestion = getRandomQuestion($questions);
 
 
 // Show score
+
+?>
