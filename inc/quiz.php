@@ -27,8 +27,8 @@ $numAttempts = 0;
 // Session variable initialization  
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (count($questions)-1) ) {
     $_SESSION[questionCounter] = 0;
-    $numAttempts += 1;
-    shuffle($questions);
+    // $numAttempts += 1;
+    // shuffle($questions);
 
 } else {
     $_SESSION[questionCounter]++;
@@ -38,8 +38,8 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (coun
 // If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt  
 
 //print_r($questions);
-echo "num of attempts: " . $numAttempts;
-echo "\n";
+// echo "num of attempts: " . $numAttempts;
+// echo "\n";
 
 // Array of a single question will be presented to the quiz taker 
 $questionToAsk = $questions[$_SESSION['questionCounter']];
