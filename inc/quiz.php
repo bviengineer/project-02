@@ -26,14 +26,20 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (coun
 } else {
     $_SESSION[questionCounter]++;
 }
-echo "<br> quiz page: the counter is: " . $_SESSION[questionCounter];
+echo "<br> quiz page counter is: " . $_SESSION[questionCounter];
 
 // Array of a single question
 $questionToAsk = $questions[$_SESSION['questionCounter']];
 
-
 // Keep track of which questions have been asked
+$questionsAsked = [];
+array_push($questionsAsked, $questionsToAsk);
+echo "<br>";
+print_r($questionToAsk);
+
 // Show which question they are on
+    /// this logic is in the index.php file
+
 // Show random question
 // Shuffle answer buttons
 
