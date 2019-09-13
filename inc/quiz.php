@@ -20,22 +20,23 @@ session_start();
 // Include questions
 include('inc/questions.php'); 
 
+// Variable will keep track of the amount of times the quiz is played 
+$numAttempts = 0;
+
 // Session variable initialization  
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (count($questions)-1) ) {
     $_SESSION[questionCounter] = 0;
+    $numAttempts += 1;
+    var_dump(shuffle($questions));
+    var_dump($questions);
+
 } else {
     $_SESSION[questionCounter]++;
 }
-//echo "<br> quiz page counter is: " . $_SESSION[questionCounter];
 
 // Show random question
-// Variable will keep track of the amount of times the quiz is played 
-// If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt 
-$numAttempts = 1;
-if (count($_SESSION['questionCounter']) >= 10 || $numAttempts >= 1) {
-    shuffle($questions);
-    $numAttempts += 1;
-}
+// If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt  
+
 //print_r($questions);
 echo $numAttempts;
 echo "\n";
