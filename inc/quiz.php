@@ -27,7 +27,7 @@ $numAttempts = 0;
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (count($questions)-1) ) {
     $_SESSION[questionCounter] = 0;
     $numAttempts += 1;
-    var_dump(shuffle($questions));
+    shuffle($questions[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10]);
     var_dump($questions);
 
 } else {
