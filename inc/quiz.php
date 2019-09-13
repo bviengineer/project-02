@@ -16,10 +16,17 @@
  */
 // Start PHP session
 session_start();
-echo "from quiz.php the session counter is " . $_SESSION['questionCounter'];
 
 // Include questions
 include('inc/questions.php'); 
+
+// Session variable initialization  
+if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (count($questions)-1) ) {
+    $_SESSION[questionCounter] = 0;
+} else {
+    $_SESSION[questionCounter]++;
+}
+echo "<br> quiz page: the counter is: " . $_SESSION[questionCounter];
 
 // Array of a single question
 $questionToAsk = $questions[$_SESSION['questionCounter']];
