@@ -22,7 +22,7 @@
 <body>
     <div class="container">
         <div id="quiz-box">
-            <p class="breadcrumbs">Question <?php  $_SESSION['questionCounter'] + 1 ?> of <?php echo $totalQuestions; ?>
+            <p class="breadcrumbs">Question <?php  echo $_SESSION['questionCounter'] + 1 ?> of <?php echo $totalQuestions; ?>
             </p>
             <p class="quiz">What is <?php echo $questionToAsk['leftAdder']; ?> + <?php echo $questionToAsk['rightAdder']; ?>?</p>
             <form action="index.php" method="POST">
