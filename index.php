@@ -1,7 +1,7 @@
 <?php
     // Start of session variable
     session_start();
-    echo "<br> index page, session count: " . $_SESSION['questionCounter'];
+   // echo "<br> index page, session count: " . $_SESSION['questionCounter'];
 
     // Inclusion of the quiz.php file
     include('inc/quiz.php');

@@ -26,21 +26,31 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (coun
 } else {
     $_SESSION[questionCounter]++;
 }
-echo "<br> quiz page counter is: " . $_SESSION[questionCounter];
+//echo "<br> quiz page counter is: " . $_SESSION[questionCounter];
 
-// Array of a single question
+// Show random question
+// Variable will keep track of the amount of times the quiz is played 
+// If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt 
+$numAttempts = 0;
+if ($numAttempts > 1) {
+    shuffle($questions);
+    $numAttempts += 1;
+}
+
+// Array of a single question will be presented to the quiz taker 
 $questionToAsk = $questions[$_SESSION['questionCounter']];
 
+//User Interface >
+    //Create the user interface of the application using the provided css. Make sure buttons are used and they function correctly (e.g. a ‘Submit” button will submit the answer for evaluation).
 // Keep track of which questions have been asked
 $questionsAsked = [];
 array_push($questionsAsked, $questionsToAsk);
-echo "<br>";
-print_r($questionToAsk);
+// echo "<br>";
+// print_r($questionToAsk);
 
 // Show which question they are on
     /// this logic is in the index.php file
 
-// Show random question
 // Shuffle answer buttons
 
 
