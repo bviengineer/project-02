@@ -31,11 +31,13 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (coun
 // Show random question
 // Variable will keep track of the amount of times the quiz is played 
 // If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt 
-$numAttempts = 0;
+$numAttempts = 1;
 if ($numAttempts > 1) {
     shuffle($questions);
     $numAttempts += 1;
 }
+print_r($questions);
+echo $numAttempts;
 
 // Array of a single question will be presented to the quiz taker 
 $questionToAsk = $questions[$_SESSION['questionCounter']];
@@ -52,7 +54,9 @@ array_push($questionsAsked, $questionsToAsk);
     /// this logic is in the index.php file
 
 // Shuffle answer buttons
-
+$array = array(1, 2, 3, 4);
+shuffle($array);
+print_r($array);
 
 // Toast correct and incorrect answers
 // Keep track of answers
