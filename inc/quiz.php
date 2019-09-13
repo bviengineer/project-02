@@ -14,13 +14,14 @@
  *  3. auto generate questions
  *
  */
-// Include questions
+// Start PHP session
 session_start();
 echo "from quiz.php the session counter is " . $_SESSION['questionCounter'];
 
+// Include questions
 include('inc/questions.php'); 
 
-// Individual Array of question
+// Array of a single question
 $questionToAsk = $questions[$_SESSION['questionCounter']];
 
 
