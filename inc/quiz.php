@@ -16,6 +16,7 @@
  */
 // Start PHP session
 session_start();
+//session_destroy();
 
 // Include questions
 include('inc/questions.php'); 
@@ -27,8 +28,7 @@ $numAttempts = 0;
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (count($questions)-1) ) {
     $_SESSION[questionCounter] = 0;
     $numAttempts += 1;
-    shuffle($questions[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10]);
-    var_dump($questions);
+    shuffle($questions);
 
 } else {
     $_SESSION[questionCounter]++;
@@ -38,7 +38,7 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (coun
 // If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt  
 
 //print_r($questions);
-echo $numAttempts;
+echo "num of attempts: " . $numAttempts;
 echo "\n";
 
 // Array of a single question will be presented to the quiz taker 
@@ -56,9 +56,7 @@ array_push($questionsAsked, $questionsToAsk);
     /// this logic is in the index.php file
 
 // Shuffle answer buttons
-$array = array(1, 2, 3, 4);
-shuffle($array);
-print_r($array);
+
 
 // Toast correct and incorrect answers
 // Keep track of answers
