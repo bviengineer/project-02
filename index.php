@@ -26,7 +26,7 @@
             </p>
             <p class="quiz">What is <?php echo $questionToAsk['leftAdder']; ?> + <?php echo $questionToAsk['rightAdder']; ?>?</p>
             <form action="index.php" method="POST">
-                <input type="hidden" name="questionId" value="<?php ?> " />
+                <input type="hidden" name="id" value="0" />
                 <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['correctAnswer']; ?>" />
                 <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['firstIncorrectAnswer']; ?>" />
                 <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['secondIncorrectAnswer']; ?>" />
