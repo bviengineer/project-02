@@ -18,7 +18,7 @@
 session_start();
 //session_destroy();
 
-// Include questions
+// Include questions array 
 include('inc/questions.php'); 
 
 // Variable will keep track of the amount of times the quiz is played 
