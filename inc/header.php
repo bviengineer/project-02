@@ -22,7 +22,7 @@
 			$_SESSION[questionCounter]++;
 	}
 
-	$_SESSION['userAnswer'] = $_POST['answer'];
+	$_SESSION['userAnswer'] = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT); 
   echo $_SESSION['userAnswer'];
 ?>
 <!DOCTYPE html>
