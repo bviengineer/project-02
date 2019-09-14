@@ -12,28 +12,30 @@
  *  1. PHP array of questions
  *  2. json formated questions
  *  3. auto generate questions
- *
- */
+ 
 // Start PHP session
-session_start();
-//session_destroy();
+	session_start();
+	//session_destroy();
 
-// Include questions array 
-include('inc/questions.php'); 
+	// Include questions array 
+	include('inc/questions.php'); 
 
-// Variable will keep track of the amount of times the quiz is played 
-$numAttempts = 0;
+	// Stores the total number of questions; will auto update if quantity changes 
+	$totalQuestions = count($questions);
 
-// Session variable initialization  
-if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (count($questions)-1) ) {
-    $_SESSION[questionCounter] = 0;
-    // $numAttempts += 1;
-    // shuffle($questions);
+	// Variable will keep track of the amount of times the quiz is played 
+	$numAttempts = 0;
 
-} else {
-    $_SESSION[questionCounter]++;
-}
+	// Session variable initialization  
+	if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= (count($questions)-1) ) {
+			$_SESSION[questionCounter] = 0;
+			// $numAttempts += 1;
+			// shuffle($questions);
 
+	} else {
+			$_SESSION[questionCounter]++;
+    */
+    include('inc/header.php')
 // Show random question
 // If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt  
 
