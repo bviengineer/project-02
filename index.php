@@ -1,7 +1,6 @@
 <?php
     // Including only quiz.php here will also include the header.php file
     include('inc/quiz.php');
-     $totalQuestions = count($questions);
 ?>
 
 <!DOCTYPE html>
