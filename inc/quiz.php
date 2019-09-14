@@ -48,9 +48,9 @@ $questionToAsk = $questions[$_SESSION['questionCounter']];
     //Create the user interface of the application using the provided css. Make sure buttons are used and they function correctly (e.g. a ‘Submit” button will submit the answer for evaluation).
 // Keep track of which questions have been asked
 $questionsAsked = [];
-array_push($questionsAsked, $questionsToAsk);
+array_push($questionsAsked, $questionToAsk);
 // echo "<br>";
-// print_r($questionToAsk);
+print_r($questionToAsk);
 
 // Show which question they are on
     /// this logic is in the index.php file
