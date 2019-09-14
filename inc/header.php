@@ -21,6 +21,9 @@
 	} else {
 			$_SESSION[questionCounter]++;
 	}
+
+	$_SESSION['userAnswer'] = $_POST['answer'];
+  echo $_SESSION['userAnswer'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
