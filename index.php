@@ -1,14 +1,7 @@
 <?php
-    include('inc/header.php');
-    // Start of session variable
-//     session_start();
-//    // echo "<br> index page, session count: " . $_SESSION['questionCounter'];
-
-//     // Inclusion of the quiz.php file
-//     include('inc/quiz.php');
-
-//     // Stores the total number of questions; will auto update if quantity changes 
-//     $totalQuestions = count($questions);
+    // Including only quiz.php here will also include the header.php file
+    include('inc/quiz.php');
+     $totalQuestions = count($questions);
 ?>
 
 <!DOCTYPE html>

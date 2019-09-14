@@ -35,7 +35,7 @@
 	} else {
 			$_SESSION[questionCounter]++;
     */
-    include('inc/header.php')
+    include('inc/header.php');
 // Show random question
 // If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt  
 
@@ -52,7 +52,7 @@ $questionToAsk = $questions[$_SESSION['questionCounter']];
 $questionsAsked = [];
 array_push($questionsAsked, $questionToAsk);
 // echo "<br>";
-print_r($questionToAsk);
+//print_r($questionToAsk);
 
 // Show which question they are on
     /// this logic is in the index.php file
