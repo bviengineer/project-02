@@ -42,7 +42,7 @@ $correctAnswer = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 if (isset($userAnswer) && $userAnswer == $correctAnswer) {
         echo "it's a match: " . $userAnswer;
     } else {
-            echo "It's not a match. The correct was: " . $correctAnswer;
+            echo "It's not a match. The correct ans was: " . $correctAnswer;
     }
 
 // Show random question
