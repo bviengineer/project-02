@@ -34,21 +34,19 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
         $_SESSION[questionCounter]++;
 }
 
+// Assigning user answer to a variable and then filtering the answer
+$answer = $_POST['answer'];
+$userAnswer = Filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
+
 // Verifying user answer
-if (isset($_POST['answer'])) {
-    $_SESSION['userAnswer'] = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
-    
-    if ($_SESSION['userAnswer'] == $questions[$_SESSION['questionCounter']]['correctAnswer']) {
+if (isset($userAnswer) && $userAnswer == $questions[$_SESSION['questionCounter']]['correctAnswer']) {
         echo "it's a match: ";
-        echo $_SESSION['userAnswer'];
+        echo $userAnswer;
     } else {
             echo "nope, wrong answer <br> your answer is: ";
-            echo $_SESSION['userAnswer'] . "<br> and the correct answer is: ";
+            echo $userAnswer . "<br> and the correct answer is: ";
             echo ($questions[$_SESSION['questionCounter']]['correctAnswer']);
     }
-} else {
-    echo "sorry, your answer was not recorded, please refresh the page and try again";
-
 
 // Show random question
 
