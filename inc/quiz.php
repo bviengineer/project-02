@@ -14,26 +14,51 @@
  *  3. auto generate questions
 */
 
-// Inclusion of header.php file 
-include('inc/header.php');
+// Inclusion of header.php and questions.php files 
+include('header.php');
+include('questions.php');
+
+// Stores the total number of questions; will auto update if quantity changes 
+$totalQuestions = count($questions);
+
+// Variable will keep track of the amount of times the quiz is played 
+$numAttempts = 0;
+
+// Session variable initialization  
+if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions-1) ) {
+        $_SESSION[questionCounter] = 0;
+        // $numAttempts += 1;
+        // shuffle($questions);
+
+} else {
+        $_SESSION[questionCounter]++;
+}
+
+// Verifying user answer
+if (isset($_POST['answer'])) {
+    $_SESSION['userAnswer'] = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
+    
+    if ($_SESSION['userAnswer'] == $questions[$_SESSION['questionCounter']]['correctAnswer']) {
+        echo "it's a match: ";
+        echo $_SESSION['userAnswer'];
+    } else {
+            echo "nope, wrong answer <br> your answer is: ";
+            echo $_SESSION['userAnswer'] . "<br> and the correct answer is: ";
+            echo ($questions[$_SESSION['questionCounter']]['correctAnswer']);
+    }
+} else {
+    echo "sorry, your answer was not recorded, please refresh the page and try again";
+
 
 // Show random question
-// If attempted more than once, will trigger the shuffling the array to return a random question on each additional attempt  
-
-//print_r($questions);
-// echo "num of attempts: " . $numAttempts;
-// echo "\n";
 
 // Array of a single question will be presented to the quiz taker 
 $questionToAsk = $questions[$_SESSION['questionCounter']];
 
-//User Interface >
-    //Create the user interface of the application using the provided css. Make sure buttons are used and they function correctly (e.g. a ‘Submit” button will submit the answer for evaluation).
+
 // Keep track of which questions have been asked
 $questionsAsked = [];
 array_push($questionsAsked, $questionToAsk);
-// echo "<br>";
-//print_r($questionToAsk);
 
 // Show which question they are on
     /// this logic is in the index.php file
