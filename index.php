@@ -1,6 +1,7 @@
 <?php
     // Including only quiz.php here will also include the header.php file which is included in quiz.php
     include('inc/quiz.php');
+    $_POST['answer'];
 ?>
 
     <div class="container">
