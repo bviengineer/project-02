@@ -22,7 +22,12 @@ include('questions.php');
 $totalQuestions = count($questions);
 
 // Variable will keep track of the amount of times the quiz is played 
-$numAttempts = 0;
+$_SESSION['numAttempts'] = 0;
+
+// Will keep track of the total number of questions answered correctly & incorrectly
+$_SESSION['totalCorrectAns'] = 0;
+$_SESSION['totalIncorrectAns'] = 0;
+
 
 // Session variable initialization  
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions-1) ) {
@@ -37,19 +42,14 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
 $userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
 $correctAnswer = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-
-// Will keep track of the total number of questions answered correctly & incorrectly
-$totalCorrectAns = 0;
-$totalIncorrectAns = 0;
-
 // Verifying user answer
 if (isset($userAnswer) && $userAnswer == $correctAnswer) {
-    $totalCorrectAns++;
-    echo "<strong>CONGRATULATIONS!</strong> You have a <strong>total</strong> of " . $totalCorrectAns . " correct answers!";
+    $_SESSION['totalCorrectAns']++;
+    echo "<strong>CONGRATULATIONS!</strong> You have a <strong>total</strong> of " .  $_SESSION['totalCorrectAns'] . " correct answers!";
     //echo "it's a match: " . $userAnswer;   
 } else {
-    $totalIncorrectAns += 1;
-    echo "<strong>PLEASE TRY AGAIN!</strong> You have a <strong>total</strong> of " . $totalIncorrectAns . " incorrect answer!";
+    $_SESSION['totalIncorrectAns'] += 1;
+    echo "<strong>PLEASE TRY AGAIN!</strong> You have a <strong>total</strong> of " . $_SESSION['totalIncorrectAns'] . " incorrect answer!";
     //echo "It's not a match. The correct ans was: " . $correctAnswer;
 }
 
