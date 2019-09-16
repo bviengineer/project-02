@@ -18,7 +18,7 @@
 include('header.php');
 include('questions.php');
 
-// Stores the total number of questions; will auto update if quantity changes 
+// Stores the total number of questions; variable will auto update if quantity changes 
 $totalQuestions = count($questions);
 
 // Variable will keep track of the amount of times the quiz is played 
@@ -28,7 +28,6 @@ $numAttempts = 0;
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions-1) ) {
         $_SESSION[questionCounter] = 0;
         // $numAttempts += 1;
-        // shuffle($questions);
 
 } else {
         $_SESSION[questionCounter]++;
@@ -38,12 +37,21 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
 $userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
 $correctAnswer = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
+
+// Will keep track of the total number of questions answered correctly & incorrectly
+$totalCorrectAns = 0;
+$totalIncorrectAns = 0;
+
 // Verifying user answer
 if (isset($userAnswer) && $userAnswer == $correctAnswer) {
-        echo "it's a match: " . $userAnswer;
-    } else {
-            echo "It's not a match. The correct ans was: " . $correctAnswer;
-    }
+    $totalCorrectAns++;
+    echo "<strong>CONGRATULATIONS!</strong> You have a <strong>total</strong> of " . $totalCorrectAns . " correct answers!";
+    //echo "it's a match: " . $userAnswer;   
+} else {
+    $totalIncorrectAns += 1;
+    echo "<strong>PLEASE TRY AGAIN!</strong> You have a <strong>total</strong> of " . $totalIncorrectAns . " incorrect answer!";
+    //echo "It's not a match. The correct ans was: " . $correctAnswer;
+}
 
 // Show random question
 
@@ -54,6 +62,8 @@ $questionToAsk = $questions[$_SESSION['questionCounter']];
 // Keep track of which questions have been asked
 $questionsAsked = [];
 array_push($questionsAsked, $questionToAsk);
+// echo "<br> these are the questions asked thus far. <br>";
+// print_r($questionsAsked);
 
 // Show which question they are on
     /// this logic is in the index.php file

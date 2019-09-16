@@ -16,6 +16,9 @@
                 <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['firstIncorrectAnswer']; ?>" />
                 <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['secondIncorrectAnswer']; ?>" />
             </form>
+            <h2>
+            
+            </h2>
         </div>
     </div>
 </body>
