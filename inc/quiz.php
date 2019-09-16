@@ -31,11 +31,11 @@ $_SESSION['totalIncorrectAns'] = 0;
 
 // Session variable initialization  
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions-1) ) {
-        $_SESSION[questionCounter] = 0;
+        $_SESSION['questionCounter'] = 0;
         // $numAttempts += 1;
 
 } else {
-        $_SESSION[questionCounter]++;
+        $_SESSION['questionCounter']++;
 }
 
 // Assigning filtered user answer & hidden input field values to variables
