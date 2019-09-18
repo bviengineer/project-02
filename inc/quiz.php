@@ -15,7 +15,7 @@ $_SESSION['questionsAsked'] = []; // Will track an array of the questions asked
 $_SESSION['numAttempts'] = 0; // To keep track of the amount of times the quiz is played 
 $totalQuestions = count($questions); // Stores total # of questions; var will auto update if quantity changes
 
-// Session variable initialization  
+// Counter Session variable initialization  
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions-1) ) {
     $_SESSION['questionCounter'] = 0; // Will track which question is currently being displayed 
     $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
@@ -49,23 +49,23 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
     //verify that the same question is not being repeated by comparing the questions already asked to the question currently being asked. 
 
 // Array of a single question will be presented to the quiz taker 
-if (empty($_SESSION['randomQuestions']) || $_SESSION['questionCounter'] >= ($totalQuestions - 1)) {
-    // echo "<br> session var not set or qus counter >= 10 <br>";
-    shuffle($_SESSION['randomQuestions']);
+if (/*!isset($_SESSION['randomQuestions']) ||*/ $_SESSION['questionCounter'] >= ($totalQuestions - 1)) {   
+    //$shuffledArray = shuffle($_SESSION['randomQuestions']);
     // echo "<br> inside code to reset question counter<br>";
-    // var_dump($_SESSION['randomQuestions'][$_SESSION['questionCounter']]);
-    echo " if clause"; 
-
+    //var_dump($shuffledArray); //$_SESSION['randomQuestions'][$_SESSION['questionCounter']]); 
+    shuffle($_SESSION['randomQuestions']);
+    $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
 } else {
     // echo "<br> ok, will shuffle the array and then present it to the user <br>";
     // var_dump($_SESSION['randomQuestions'][$_SESSION['questionCounter']]);
     // echo "<br>";
     // echo($_SESSION['randomQuestions'][$_SESSION['questionCounter']]['leftAdder']);
-
+    shuffle($_SESSION['randomQuestions']);
+    $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
     echo " else clause <br>";
 }
 
-$questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
+// $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
 
 // Keep track of which questions have been asked
 //array_push($_SESSION['questionsAsked']);
