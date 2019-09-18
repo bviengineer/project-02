@@ -1,22 +1,23 @@
 <?php
 /*
  * PHP Techdegree Project 2: Build a Quiz App in PHP
+ * 
+ * TO DO:
+ *  create a footer file and include it where necessary 
 */
 
 // Inclusion of header.php and questions.php files 
 include('header.php');
 include('questions.php');
 
-// Will persist the questions across sessions for shuffling to be effective 
-//print_r($_SESSION['quizQuestions'] = $questions); 
-
-$_SESSION['questionsAsked'] = []; // Will keep track of the questions asked in an array 
-$_SESSION['numAttempts'] = 0; // Variable will keep track of the amount of times the quiz is played 
-$totalQuestions = count($questions); // Stores the total number of questions; variable will auto update if quantity changes
+$_SESSION['randomQuestions'] = $questions; // To hold the array of questions; questions will be shuffled 
+$_SESSION['questionsAsked'] = []; // Will track an array of the questions asked
+$_SESSION['numAttempts'] = 0; // To keep track of the amount of times the quiz is played 
+$totalQuestions = count($questions); // Stores total # of questions; var will auto update if quantity changes
 
 // Session variable initialization  
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions-1) ) {
-    $_SESSION['questionCounter'] = 0;
+    $_SESSION['questionCounter'] = 0; // Will track which question is currently being displayed 
     $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
     $_SESSION['numAttempts'] = 0;
 
@@ -27,9 +28,10 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
 // Assigning & filtering user answer & hidden input field values to variables to be used elsewhere 
 $userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
 $correctAnswer = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-// Verifying user answer
 
+// Verifying user answer & totaling num of correct answers
 if (isset($userAnswer) && $userAnswer == $correctAnswer) {
+    $_SESSION['totalCorrectAns']++;
     echo "<strong>CONGRATULATIONS!</strong> You have a <strong>total</strong> of " .  $_SESSION['totalCorrectAns'] . " correct answers!";
     //echo "it's a match: " . $userAnswer;   
 } else {
@@ -39,11 +41,31 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
 }
 
 // Show random question
-
+    //create a session variable set it = array of $questions
+    // shuffle the session varaible of questions if
+        // all questions have been asked 
+        // user is starting over
+    // present question to user on index page from session variable
+    //verify that the same question is not being repeated by comparing the questions already asked to the question currently being asked. 
 
 // Array of a single question will be presented to the quiz taker 
-$questionToAsk = $questions[$_SESSION['questionCounter']];
-//print_r($questionToAsk);
+if (empty($_SESSION['randomQuestions']) || $_SESSION['questionCounter'] >= ($totalQuestions - 1)) {
+    // echo "<br> session var not set or qus counter >= 10 <br>";
+    shuffle($_SESSION['randomQuestions']);
+    // echo "<br> inside code to reset question counter<br>";
+    // var_dump($_SESSION['randomQuestions'][$_SESSION['questionCounter']]);
+    echo " if clause"; 
+
+} else {
+    // echo "<br> ok, will shuffle the array and then present it to the user <br>";
+    // var_dump($_SESSION['randomQuestions'][$_SESSION['questionCounter']]);
+    // echo "<br>";
+    // echo($_SESSION['randomQuestions'][$_SESSION['questionCounter']]['leftAdder']);
+
+    echo " else clause <br>";
+}
+
+$questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
 
 // Keep track of which questions have been asked
 //array_push($_SESSION['questionsAsked']);
