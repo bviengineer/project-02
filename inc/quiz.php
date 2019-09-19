@@ -10,6 +10,7 @@
 include('header.php');
 include('questions.php');
 
+shuffle($questions);
 $_SESSION['randomQuestions'] = $questions; // To hold the array of questions; questions will be shuffled 
 //$_SESSION['questionsAsked']; // Will track an array of the questions asked
 $_SESSION['numAttempts'] = 0; // To keep track of the amount of times the quiz is played 
@@ -45,20 +46,9 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
     // present question to user on index page from session variable
     //verify that the same question is not being repeated by comparing the questions already asked to the question currently being asked. 
 
-// Array of a single question will be presented to the quiz taker
-if ($_SESSION['questionCounter'] >= ($totalQuestions - 2)) {   
-    //EMPTY THE QUESTIONS ASKED ARRAY
-    shuffle($_SESSION['randomQuestions']);
-    $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-} else {
-    //shuffle($_SESSION['randomQuestions']);
-    $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-    
-    // Keep track of which questions have been asked
-    array_push($_SESSION['questionsAsked'], $questionToAsk);
-    echo "<br> content of questions asked array";
-    var_dump($_SESSION['questionsAsked']);
-}
+// Array of a single question will be presented to the quiz taker 
+$questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
+
 // Show which question they are on
     /// this logic is in the index.php file
 
