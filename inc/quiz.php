@@ -11,7 +11,7 @@ include('header.php');
 include('questions.php');
 
 $_SESSION['randomQuestions'] = $questions; // To hold the array of questions; questions will be shuffled 
-$_SESSION['questionsAsked'] = []; // Will track an array of the questions asked
+//$_SESSION['questionsAsked']; // Will track an array of the questions asked
 $_SESSION['numAttempts'] = 0; // To keep track of the amount of times the quiz is played 
 $totalQuestions = count($questions); // Stores total # of questions; var will auto update if quantity changes
 
@@ -33,45 +33,32 @@ $correctAnswer = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 if (isset($userAnswer) && $userAnswer == $correctAnswer) {
     $_SESSION['totalCorrectAns']++;
     echo "<strong>CONGRATULATIONS!</strong> You have a <strong>total</strong> of " .  $_SESSION['totalCorrectAns'] . " correct answers!";
-    //echo "it's a match: " . $userAnswer;   
 } else {
-    //$_SESSION['totalCorrectAns'] -= 1;
-   echo "<strong>PLEASE TRY AGAIN!</strong> That was incorrect!";
-    //echo "It's not a match. The correct ans was: " . $correctAnswer;
+   echo "<strong>PLEASE TRY AGAIN!</strong> That was incorrect!";;
 }
 
 // Show random question
-    //create a session variable set it = array of $questions
+    //create a session variable set it = array of $questions - DONE
     // shuffle the session varaible of questions if
         // all questions have been asked 
         // user is starting over
     // present question to user on index page from session variable
     //verify that the same question is not being repeated by comparing the questions already asked to the question currently being asked. 
 
-// Array of a single question will be presented to the quiz taker 
-if (/*!isset($_SESSION['randomQuestions']) ||*/ $_SESSION['questionCounter'] >= ($totalQuestions - 1)) {   
-    //$shuffledArray = shuffle($_SESSION['randomQuestions']);
-    // echo "<br> inside code to reset question counter<br>";
-    //var_dump($shuffledArray); //$_SESSION['randomQuestions'][$_SESSION['questionCounter']]); 
+// Array of a single question will be presented to the quiz taker
+if ($_SESSION['questionCounter'] >= ($totalQuestions - 2)) {   
+    //EMPTY THE QUESTIONS ASKED ARRAY
     shuffle($_SESSION['randomQuestions']);
     $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
 } else {
-    // echo "<br> ok, will shuffle the array and then present it to the user <br>";
-    // var_dump($_SESSION['randomQuestions'][$_SESSION['questionCounter']]);
-    // echo "<br>";
-    // echo($_SESSION['randomQuestions'][$_SESSION['questionCounter']]['leftAdder']);
-    shuffle($_SESSION['randomQuestions']);
+    //shuffle($_SESSION['randomQuestions']);
     $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-    echo " else clause <br>";
+    
+    // Keep track of which questions have been asked
+    array_push($_SESSION['questionsAsked'], $questionToAsk);
+    echo "<br> content of questions asked array";
+    var_dump($_SESSION['questionsAsked']);
 }
-
-// $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-
-// Keep track of which questions have been asked
-//array_push($_SESSION['questionsAsked']);
-//array_push($questionsAsked, $questionToAsk);
-//print_r($questionsAsked);
-
 // Show which question they are on
     /// this logic is in the index.php file
 
