@@ -30,10 +30,14 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
 
 // Array of a single question will be presented to the quiz taker 
 if ($_SESSION['questionCounter'] > count($totalQuestions-1) ) {
-    shuffle($_SESSION['randomQuestions']);
+    shuffle($_SESSION['randomQuestions']);    
+    $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
     $_SESSION['questionsAsked'] = [];
-}
 
+} elseif (shuffle($_SESSION['randomQuestions']) == true && $_SESSION['questionCounter'] <= ($totalQuestions - 1)) {
+    echo "true, the array was shuffled and the question counter is less than the length of the array";
+    $questionToAsk = array_diff($_SESSION['randomQuestions'], $_SESSION['questionsAsked']);
+} 
 // for ($q = 1; $q <= $_SESSION['randomQuestions']; $q++){
 //     $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
 //     array_push($_SESSION['questionsAsked'], $questionToAsk);
@@ -51,7 +55,7 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
     $_SESSION['totalCorrectAns']++;
     echo "<strong>CONGRATULATIONS!</strong> You have a <strong>total</strong> of " .  $_SESSION['totalCorrectAns'] . " correct answers!";
 } else {
-   echo "<strong>PLEASE TRY AGAIN!</strong> That was incorrect!";;
+   echo "<strong>PLEASE TRY AGAIN!</strong> That was incorrect!";
 }
 
 // Show random question
