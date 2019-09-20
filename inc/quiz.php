@@ -24,17 +24,22 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
     $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
     $_SESSION['numAttempts'] = 0;
 
-} else {
-        $_SESSION['questionCounter']++;
-}
-
-// Array of a single question will be presented to the quiz taker 
-if ($_SESSION['questionCounter'] > count($totalQuestions-1) ) {
     shuffle($_SESSION['randomQuestions']);    
     $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
     $_SESSION['questionsAsked'] = [];
 
-} elseif (shuffle($_SESSION['randomQuestions']) == true && $_SESSION['questionCounter'] <= ($totalQuestions - 1)) {
+} else {
+        $_SESSION['questionCounter']++;
+        array_push($_SESSION['questionsAsked'], $questionToAsk);
+}
+
+// Array of a single question will be presented to the quiz taker 
+// if ($_SESSION['questionCounter'] > count($totalQuestions-1) ) {
+//     shuffle($_SESSION['randomQuestions']);    
+//     $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
+//     $_SESSION['questionsAsked'] = [];
+
+/* }*/ if (shuffle($_SESSION['randomQuestions']) == true && $_SESSION['questionCounter'] <= ($totalQuestions - 1)) {
     echo "true, the array was shuffled and the question counter is less than the length of the array";
     $questionToAsk = array_diff($_SESSION['randomQuestions'], $_SESSION['questionsAsked']);
 } 
