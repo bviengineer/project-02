@@ -13,8 +13,6 @@ include('questions.php');
 
 //QUESTION: are the questions being resassigned to the session variable each time the question changes?
 $_SESSION['randomQuestions'] = $questions; // To hold the array of questions; questions will be shuffled 
-//$_SESSION['questionsAsked']; // Will track an array of the questions asked
-$_SESSION['numAttempts'] = 0; // To keep track of the amount of times the quiz is played 
 $totalQuestions = count($questions); // Stores total # of questions; var will auto update if quantity changes
 
 
@@ -22,33 +20,15 @@ $totalQuestions = count($questions); // Stores total # of questions; var will au
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions-1) ) {
     $_SESSION['questionCounter'] = 0; // Will track which question is currently being displayed 
     $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
-    $_SESSION['numAttempts'] = 0;
 
     shuffle($_SESSION['randomQuestions']);    
-    $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-    $_SESSION['questionsAsked'] = [];
-
+    
 } else {
-        $_SESSION['questionCounter']++;
-        array_push($_SESSION['questionsAsked'], $questionToAsk);
+    $_SESSION['questionCounter']++;
+    $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
+    //     $questionToAsk = array_diff($_SESSION['randomQuestions'], $_SESSION['questionsAsked']);
+    array_push($_SESSION['questionsAsked'], $_SESSION['randomQuestions'][$_SESSION['questionCounter']]);
 }
-
-// Array of a single question will be presented to the quiz taker 
-// if ($_SESSION['questionCounter'] > count($totalQuestions-1) ) {
-//     shuffle($_SESSION['randomQuestions']);    
-//     $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-//     $_SESSION['questionsAsked'] = [];
-
-/* }*/ if (shuffle($_SESSION['randomQuestions']) == true && $_SESSION['questionCounter'] <= ($totalQuestions - 1)) {
-    echo "true, the array was shuffled and the question counter is less than the length of the array";
-    $questionToAsk = array_diff($_SESSION['randomQuestions'], $_SESSION['questionsAsked']);
-} 
-// for ($q = 1; $q <= $_SESSION['randomQuestions']; $q++){
-//     $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-//     array_push($_SESSION['questionsAsked'], $questionToAsk);
-//     var_dump($_SESSION['questionsAsked']);
-// }
-
 
 // Assigning & filtering user answer & hidden input field values to variables to be used elsewhere 
 $userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
