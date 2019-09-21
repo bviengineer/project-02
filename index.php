@@ -9,12 +9,12 @@
         <div id="quiz-box">
             <p class="breadcrumbs">Question <?php  echo $_SESSION['questionCounter'] + 1 ?> of <?php echo $totalQuestions; ?>
             </p>
-            <p class="quiz">What is <?php echo $_SESSION['randomQuestions'][$_SESSION['questionCounter']]['leftAdder']; ?> + <?php echo $_SESSION['randomQuestions'][$_SESSION['questionCounter']]['rightAdder']; ?>?</p>
+            <p class="quiz">What is <?php echo $questionToAsk['leftAdder']; ?> + <?php echo $questionToAsk['rightAdder']; ?>?</p>
             <form action="index.php" method="POST">
-                <input type="hidden" name="id" value="<?php echo $_SESSION['randomQuestions'][$_SESSION['questionCounter']]['correctAnswer']; ?>" />
-                <input type="submit" class="btn" name="answer" value="<?php echo $_SESSION['randomQuestions'][$_SESSION['questionCounter']]['correctAnswer']; ?>" />
-                <input type="submit" class="btn" name="answer" value="<?php echo $_SESSION['randomQuestions'][$_SESSION['questionCounter']]['firstIncorrectAnswer']; ?>" />
-                <input type="submit" class="btn" name="answer" value="<?php echo $_SESSION['randomQuestions'][$_SESSION['questionCounter']]['secondIncorrectAnswer']; ?>" />
+                <input type="hidden" name="id" value="<?php echo $questionToAsk['correctAnswer']; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['correctAnswer']; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['firstIncorrectAnswer']; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['secondIncorrectAnswer']; ?>" />
             </form>
             <h2>
             
