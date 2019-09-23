@@ -16,19 +16,28 @@ $_SESSION['randomQuestions'] = $questions; // To hold the array of questions; qu
 $totalQuestions = count($questions); // Stores total # of questions; var will auto update if quantity changes
 
 
-// Counter Session variable initialization  
-if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions-1) ) {
+// Counter Session variable initialization 
+if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions - 1) ) {
     $_SESSION['questionCounter'] = 0; // Will track which question is currently being displayed 
     $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
+    $_SESSION['questionsAsked'] = [];
+    shuffle($_SESSION['randomQuestions']);
+    // $_SESSION['shuffledQuestions'] = $_SESSION['randomQuestions'];
+    // print_r($_SESSION['randomQuestions']);
 
-    shuffle($_SESSION['randomQuestions']);    
     
 } else {
     $_SESSION['questionCounter']++;
-    $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-    //     $questionToAsk = array_diff($_SESSION['randomQuestions'], $_SESSION['questionsAsked']);
-    array_push($_SESSION['questionsAsked'], $_SESSION['randomQuestions'][$_SESSION['questionCounter']]);
 }
+
+// for ($q = $_SESSION['questionCounter']; $q <= count($_SESSION['randomQuestions']) - 1; $q++) {
+//     $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
+//     echo "<br> inside for loop <br>";
+// }
+
+$questionToAsk = $_SESSION['shuffledQuestions'][$_SESSION['questionCounter']];
+// echo "<br> <br> <br> <br> <br> random questions array outside of conditional statement <br> <br> <br> <br>";
+// print_r($_SESSION['shuffledQuestions']);
 
 // Assigning & filtering user answer & hidden input field values to variables to be used elsewhere 
 $userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
