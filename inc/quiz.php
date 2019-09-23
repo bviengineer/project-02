@@ -42,10 +42,13 @@ $userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
 $correctAnswer = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 
-// Verifying user answer & totaling num of correct answers
+// Toast correct and incorrect answers
+  // Verifying user answer & totaling num of correct answers
 if (isset($userAnswer) && $userAnswer == $correctAnswer) {
     $_SESSION['totalCorrectAns']++;
-    $_SESSION['finalScore'] = $_SESSION['totalCorrectAns'];
+
+    // Keep track of answers
+    $_SESSION['finalScore'] += $_SESSION['totalCorrectAns'];
     echo "<strong>CONGRATULATIONS!</strong> You have a <strong>total</strong> of " .  $_SESSION['totalCorrectAns'] . " correct answers!";
 } else {
    echo "<strong>PLEASE TRY AGAIN!</strong> That was incorrect!";
@@ -53,16 +56,11 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
 
 // Shuffle answer buttons
   // Grab each answer result from array $_SESSION['shuffledQuestions'] or $questionToAsk
-  // Push only answers into another array
+  // Push only the answers into another array
   array_push($_SESSION['answerButtons'], $questionToAsk['correctAnswer'], $questionToAsk['firstIncorrectAnswer'], $questionToAsk['secondIncorrectAnswer']);
    
   // Shuffle the array of answers
   shuffle($_SESSION['answerButtons']);
-
-  // place the shuffled list into a session variable - MAY NOT BE NEEDED 
-  // $_SESSION['shuffledAnswerButtons'] = $_SESSION['answerButtons'];
-  // echo "<br> session var holding shuffled answer buttons <br>";
-  // print_r($_SESSION['shuffledAnswerButtons']);
   
   // Print the shuffled answers to the page
   $answer1 = $_SESSION['answerButtons'][0];
@@ -70,8 +68,6 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
   $answer3 = $_SESSION['answerButtons'][2];
 
   
-// Toast correct and incorrect answers - DONE
-// Keep track of answers - DONE
 // If all questions have been asked, give option to show score
 // else give option to move to next question
 
