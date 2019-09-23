@@ -12,9 +12,9 @@
             <p class="quiz">What is <?php echo $questionToAsk['leftAdder']; ?> + <?php echo $questionToAsk['rightAdder']; ?>?</p>
             <form action="index.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $questionToAsk['correctAnswer']; ?>" />
-                <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['correctAnswer']; ?>" />
-                <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['firstIncorrectAnswer']; ?>" />
-                <input type="submit" class="btn" name="answer" value="<?php echo $questionToAsk['secondIncorrectAnswer']; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $answer1; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $answer2; ?>" />
+                <input type="submit" class="btn" name="answer" value="<?php echo $answer3; ?>" />
             </form>
             <h2>
             
