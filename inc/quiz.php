@@ -22,7 +22,7 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
     $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
     $_SESSION['questionsAsked'] = [];
     shuffle($_SESSION['randomQuestions']);
-    // $_SESSION['shuffledQuestions'] = $_SESSION['randomQuestions'];
+    $_SESSION['shuffledQuestions'] = $_SESSION['randomQuestions'];
     // print_r($_SESSION['randomQuestions']);
 
     
