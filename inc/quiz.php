@@ -21,23 +21,16 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
     $_SESSION['questionCounter'] = 0; // Will track which question is currently being displayed 
     $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
     $_SESSION['questionsAsked'] = [];
-    shuffle($_SESSION['randomQuestions']);
-    $_SESSION['shuffledQuestions'] = $_SESSION['randomQuestions'];
-    // print_r($_SESSION['randomQuestions']);
-
+    shuffle($_SESSION['randomQuestions']); // shuffles the session variable containing the array of questions
     
+    // Storing of the shuffled questions in a session variable that will hold the shuffled array in place until all questions have been asked
+    $_SESSION['shuffledQuestions'] = $_SESSION['randomQuestions']; 
 } else {
     $_SESSION['questionCounter']++;
 }
 
-// for ($q = $_SESSION['questionCounter']; $q <= count($_SESSION['randomQuestions']) - 1; $q++) {
-//     $questionToAsk = $_SESSION['randomQuestions'][$_SESSION['questionCounter']];
-//     echo "<br> inside for loop <br>";
-// }
-
+// Shuffled questions will be presented to the quiz taker one at at time
 $questionToAsk = $_SESSION['shuffledQuestions'][$_SESSION['questionCounter']];
-// echo "<br> <br> <br> <br> <br> random questions array outside of conditional statement <br> <br> <br> <br>";
-// print_r($_SESSION['shuffledQuestions']);
 
 // Assigning & filtering user answer & hidden input field values to variables to be used elsewhere 
 $userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
@@ -52,20 +45,10 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
    echo "<strong>PLEASE TRY AGAIN!</strong> That was incorrect!";
 }
 
-// Show random question
-    //create a session variable set it = array of $questions - DONE
-    // shuffle the session varaible of questions if
-        // all questions have been asked 
-        // user is starting over
-    // present question to user on index page from session variable
-    //verify that the same question is not being repeated by comparing the questions already asked to the question currently being asked. 
-
-
 // Shuffle answer buttons
 
 
-
-// Toast correct and incorrect answers
+// Toast correct and incorrect answers - DONE
 // Keep track of answers
 // If all questions have been asked, give option to show score
 // else give option to move to next question
