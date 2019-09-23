@@ -14,6 +14,7 @@ include('questions.php');
 // Variables
 $_SESSION['randomQuestions'] = $questions; // To hold the array of questions; questions will be shuffled 
 $_SESSION['finalScore'] = 0; // To hold final quiz score
+$_SESSION['answerButtons'] = []; // To store answer button values that will be shuffled 
 $totalQuestions = count($questions); // Stores total # of questions; var will auto update if quantity changes
 
 
@@ -37,7 +38,7 @@ $questionToAsk = $_SESSION['shuffledQuestions'][$_SESSION['questionCounter']];
 
 
 // Assigning & filtering user answer & hidden input field values to variables to be used elsewhere 
-$userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT);
+$userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT); 
 $correctAnswer = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 
@@ -51,10 +52,26 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
 }
 
 // Shuffle answer buttons
+  // Grab each answer result from array $_SESSION['shuffledQuestions'] or $questionToAsk
+  // Push only answers into another array
+  array_push($_SESSION['answerButtons'], $questionToAsk['correctAnswer'], $questionToAsk['firstIncorrectAnswer'], $questionToAsk['secondIncorrectAnswer']);
+   
+  // Shuffle the array of answers
+  shuffle($_SESSION['answerButtons']);
 
+  // place the shuffled list into a session variable - MAY NOT BE NEEDED 
+  // $_SESSION['shuffledAnswerButtons'] = $_SESSION['answerButtons'];
+  // echo "<br> session var holding shuffled answer buttons <br>";
+  // print_r($_SESSION['shuffledAnswerButtons']);
+  
+  // Print the shuffled answers to the page
+  $answer1 = $_SESSION['answerButtons'][0];
+  $answer2 = $_SESSION['answerButtons'][1];
+  $answer3 = $_SESSION['answerButtons'][2];
 
+  
 // Toast correct and incorrect answers - DONE
-// Keep track of answers
+// Keep track of answers - DONE
 // If all questions have been asked, give option to show score
 // else give option to move to next question
 
