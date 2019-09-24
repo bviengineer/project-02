@@ -4,7 +4,7 @@ Treehouse PHP Techdegree ~ Create a PHP Quiz App
 <hr>
 
 # About Project 
-The PHP Quiz App will present ten (10) math addition questions, each with three answer options, and only one answer is correct. The quiz questions will be shuffled after all ten questions are presented. The answer buttons will also be shuffled.
+The PHP Quiz App will present ten (10) math addition questions, each with three answer options, and only one answer is correct. The quiz questions will be reshuffled after all ten questions are answered. The answer buttons will also be reshuffled. A total score will be presented after all questions have been answered.
 
 Base files contaning HTML, CSS, the array of quiz questions, were provided.
 
@@ -16,4 +16,4 @@ Base files contaning HTML, CSS, the array of quiz questions, were provided.
 
 `index.php` displays the content of the quiz.
 
-`header.php` contains header meta tags and other informaiton and is included on appropriate pages. 
+`header.php` contains header information and the `session_start()` for the app.
