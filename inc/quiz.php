@@ -11,7 +11,7 @@ include('questions.php');
 // Variables
 $_SESSION['randomQuestions'] = $questions; // To hold the array of questions; questions will be shuffled 
 $_SESSION['answerButtons'] = []; // To store answer button values that will be shuffled 
-$totalQuestions = count($questions); // Stores total # of questions; var will auto update if quantity changes
+$totalQuestions = count($questions); // Stores total # of questions; will auto update if quantity of questions changes
 
 
 // Counter Session variable initialization & session variable resets 
@@ -22,6 +22,8 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
 
   $_SESSION['questionCounter'] = 0; // Will track which question is currently being displayed 
   $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
+  $_SESSION['userAnswer'] = 0;
+  $_SESSION['correctAnswer'] = 0;
   shuffle($_SESSION['randomQuestions']); // shuffles the session variable containing the array of questions
     
   // Storing of the shuffled questions in a session variable that will hold the shuffled array without reshuffling, until all questions have been asked
@@ -38,14 +40,14 @@ $questionToAsk = $_SESSION['shuffledQuestions'][$_SESSION['questionCounter']];
 
 // Verifying user answer
   // Assigning & filtering quiz-taker answer(s) & hidden input field values to variables 
-$userAnswer = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT); 
-$correctAnswer = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+$_SESSION['userAnswer'] = filter_input(INPUT_POST, 'answer', FILTER_SANITIZE_NUMBER_INT); 
+$_SESSION['correctAnswer'] = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 
 // Toast correct and incorrect answers
    // Totaling num of correct answers
   // Keep track of answers
-if (isset($userAnswer) && $userAnswer == $correctAnswer) {
+if (isset($_SESSION['userAnswer']) && $_SESSION['userAnswer'] == $_SESSION['correctAnswer']) {
     $_SESSION['totalCorrectAns']++;
     echo "<h1><strong>CONGRATULATIONS!</strong> That's the correct answer!</h1>";
 } else {
