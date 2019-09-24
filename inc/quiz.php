@@ -49,9 +49,10 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
 
     // Keep track of answers
     $_SESSION['finalScore'] += $_SESSION['totalCorrectAns'];
-    echo "<strong>CONGRATULATIONS!</strong> You have a <strong>total</strong> of " .  $_SESSION['totalCorrectAns'] . " correct answers!";
+    echo "<h1><strong>CONGRATULATIONS!</strong> That's the correct answer!</h1>";
 } else {
-   echo "<strong>PLEASE TRY AGAIN!</strong> That was incorrect!";
+   echo "<h1><strong>PLEASE TRY AGAIN!</strong> That was incorrect!</h1>";
+   $_SESSION['finalScore'] -= 1;
 }
 
 // Shuffle answer buttons
@@ -65,13 +66,12 @@ if (isset($userAnswer) && $userAnswer == $correctAnswer) {
   // Print the shuffled answers to the page
   $answer1 = $_SESSION['answerButtons'][0];
   $answer2 = $_SESSION['answerButtons'][1];
-  $answer3 = $_SESSION['answerButtons'][2];
-
-  
-// If all questions have been asked, give option to show score
-// else give option to move to next question
+  $answer3 = $_SESSION['answerButtons'][2]; 
 
 
 // Show score
+if ($_SESSION['questionCounter'] >= ($totalQuestions - 1) ){
+  echo "<h1>Your final score is: " . $_SESSION['finalScore'] . " You answered " . $_SESSION['finalScore'] . " / " . $totalQuestions . " questions correctly!</h1>";
+} 
 
 ?>
