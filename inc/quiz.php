@@ -1,9 +1,6 @@
 <?php
 /*
  * PHP Techdegree Project 2: Build a Quiz App in PHP
- * 
- * TO DO:
- *  create a footer file and include it where necessary 
 */
 
 // Inclusion of header.php and questions.php files 
