@@ -64,8 +64,14 @@ body {
 .btn:hover {
   background-color: #FFF;
   color: #000;
+  background-color: antiquewhite;
 }
 
 .btn:focus {
   outline: none;
+}
+
+h1 {
+  margin-left: 10%;
+  color: firebrick;
 }
