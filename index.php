@@ -15,10 +15,8 @@
                 <input type="submit" class="btn" name="answer" value="<?php echo $answer1; ?>" />
                 <input type="submit" class="btn" name="answer" value="<?php echo $answer2; ?>" />
                 <input type="submit" class="btn" name="answer" value="<?php echo $answer3; ?>" />
-            </form>
-            <h2>
-            
-            </h2>
+             </form>
+            <h2></h2>
         </div>
     </div>
 </body>
