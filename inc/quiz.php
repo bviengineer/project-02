@@ -50,7 +50,7 @@ $_SESSION['correctAnswer'] = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMB
 if (isset($_SESSION['userAnswer']) && $_SESSION['userAnswer'] == $_SESSION['correctAnswer']) {
     $_SESSION['totalCorrectAns']++;
     echo "<h1><strong>CONGRATULATIONS!</strong> That's the correct answer!</h1>";
-} elseif(isset($_SESSION['userAnswer']) != $_SESSION['correctAnswer']) {
+} elseif (isset($_SESSION['userAnswer']) && $_SESSION['userAnswer'] != $_SESSION['correctAnswer']) {
    echo "<h1><strong>PLEASE TRY AGAIN!</strong> That was incorrect!</h1>";
 } 
 
