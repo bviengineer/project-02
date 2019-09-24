@@ -1,8 +1,4 @@
 <?php
-/*
- * PHP Techdegree Project 2: Build a Quiz App in PHP
-*/
-
 // Inclusion of header.php and questions.php files 
 include('header.php');
 include('questions.php');
@@ -22,13 +18,12 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
 
   $_SESSION['questionCounter'] = 0; // Will track which question is currently being displayed 
   $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
-  $_SESSION['userAnswer'] = 0;
-  $_SESSION['correctAnswer'] = 0;
-  $_SESSION['userAnswer'] = 0;
-  $_SESSION['correctAnswer'] = 0;
+  $_SESSION['userAnswer'] = 0; // Will hold user answer to question
+  $_SESSION['correctAnswer'] = 0; // Will hold the correct answer 
   shuffle($_SESSION['randomQuestions']); // shuffles the session variable containing the array of questions
     
-  // Storing of the shuffled questions in a session variable that will hold the shuffled array without reshuffling, until all questions have been asked
+  // Storing shuffled questions in a session var. 
+  //This will hold the shuffled position of the array elements w/out reshuffling everytime the page reloads and until all questions have been asked
   $_SESSION['shuffledQuestions'] = $_SESSION['randomQuestions']; 
 
 } else {
