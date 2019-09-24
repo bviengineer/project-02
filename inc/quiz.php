@@ -18,7 +18,7 @@ $totalQuestions = count($questions); // Stores total # of questions; will auto u
 if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($totalQuestions - 1) ) {
   
   // Will print final score to the page
-  echo "<h1>Your final score is: " . $_SESSION['totalCorrectAns'] . ". You answered " . $_SESSION['totalCorrectAns'] . " / " . $totalQuestions . " questions correctly!</h1>";
+  echo "<h1>Your final score is: " . $_SESSION['totalCorrectAns'] . ". &nbsp;&nbsp;&nbsp; You answered " . $_SESSION['totalCorrectAns'] . " / " . $totalQuestions . " questions correctly!</h1>";
 
   $_SESSION['questionCounter'] = 0; // Will track which question is currently being displayed 
   $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
