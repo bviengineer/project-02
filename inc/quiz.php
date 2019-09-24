@@ -24,6 +24,8 @@ if(!isset($_SESSION['questionCounter']) || $_SESSION['questionCounter'] >= ($tot
   $_SESSION['totalCorrectAns'] = 0; // Will keep track of the total number of questions answered correctly
   $_SESSION['userAnswer'] = 0;
   $_SESSION['correctAnswer'] = 0;
+  $_SESSION['userAnswer'] = 0;
+  $_SESSION['correctAnswer'] = 0;
   shuffle($_SESSION['randomQuestions']); // shuffles the session variable containing the array of questions
     
   // Storing of the shuffled questions in a session variable that will hold the shuffled array without reshuffling, until all questions have been asked
