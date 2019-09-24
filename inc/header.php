@@ -1,7 +1,6 @@
 <?php 
 	// Start PHP session and will also be started on every page where the header is directly or subsequently included 
 	session_start();
-	//session_destroy(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
